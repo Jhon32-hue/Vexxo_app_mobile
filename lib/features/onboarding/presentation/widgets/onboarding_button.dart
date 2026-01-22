@@ -33,13 +33,16 @@ class OnboardingButton extends StatelessWidget {
             Text(
               label,
               style: const TextStyle(
-                color: Color(0xFF0B1220),
+                color: NevyColors.background,
                 fontWeight: FontWeight.w600,
                 fontSize: 16,
               ),
             ),
             const SizedBox(width: 8),
-            const Icon(Icons.arrow_forward_rounded, color: Color(0xFF0B1220)),
+            const Icon(
+              Icons.arrow_forward_rounded,
+              color: NevyColors.background,
+            ),
           ],
         ),
       ),

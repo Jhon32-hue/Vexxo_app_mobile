@@ -90,12 +90,12 @@ class _HeroCard extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: const Color(0xFF0F1729),
+        color: NevyColors.surface,
         borderRadius: BorderRadius.circular(28),
         border: Border.all(color: NevyColors.border.withValues(alpha: 0.5)),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.3),
+            color: NevyColors.background.withValues(alpha: 0.45),
             blurRadius: 24,
             offset: const Offset(0, 12),
           ),
