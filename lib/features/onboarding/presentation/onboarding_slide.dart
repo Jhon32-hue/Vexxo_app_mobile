@@ -3,49 +3,24 @@ import '../../../core/theme/colors.dart';
 
 /// UI de una pantalla del onboarding
 class OnboardingSlide extends StatelessWidget {
-  final String title;
-  final String subtitle;
-  final String asset;
-
-  const OnboardingSlide({
-    super.key,
-    required this.title,
-    required this.subtitle,
-    required this.asset,
-  });
+  const OnboardingSlide({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(gradient: NevyColors.heroGradient),
-      padding: const EdgeInsets.all(24),
-      child: Column(
-        children: [
-          const SizedBox(height: 40),
-
-          /// Ilustración principal
-          Expanded(child: Image.asset(asset, fit: BoxFit.contain)),
-
-          const SizedBox(height: 24),
-
-          Text(
-            title,
-            textAlign: TextAlign.center,
-            style: Theme.of(
-              context,
-            ).textTheme.headlineLarge?.copyWith(color: Colors.white),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24),
+      child: Center(
+        child: Container(
+          height: 280,
+          width: double.infinity,
+          decoration: BoxDecoration(
+            color: NevyColors.surface.withValues(alpha: 0.45),
+            borderRadius: BorderRadius.circular(28),
+            border: Border.all(
+              color: NevyColors.border.withValues(alpha: 0.7),
+            ),
           ),
-
-          const SizedBox(height: 12),
-
-          Text(
-            subtitle,
-            textAlign: TextAlign.center,
-            style: Theme.of(
-              context,
-            ).textTheme.bodyMedium?.copyWith(color: Colors.white70),
-          ),
-        ],
+        ),
       ),
     );
   }
