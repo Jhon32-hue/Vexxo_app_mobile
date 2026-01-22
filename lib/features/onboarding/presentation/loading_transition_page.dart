@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import '../../../core/theme/colors.dart';
+import '../../../core/widgets/nevy_wordmark.dart';
 import 'widgets/flying_man_animation.dart';
+import 'widgets/nevy_logo_loader.dart';
 
-/// Pantalla que aparece al terminar onboarding
-/// antes de ir a login / register
+/// Pantalla de transición al finalizar el onboarding.
+/// Mantiene la marca y una animación suave mientras carga.
 class LoadingTransitionPage extends StatefulWidget {
   const LoadingTransitionPage({super.key});
 
@@ -25,18 +27,20 @@ class _LoadingTransitionPageState extends State<LoadingTransitionPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: NevyColors.brandPrimary,
+      backgroundColor: NevyColors.background,
       body: Stack(
-        children: const [
-          FlyingManAnimation(),
+        children: [
+          // Fondo animado con hombre volando.
+          const FlyingManAnimation(speed: 0.8),
           Center(
-            child: Text(
-              'Nevy',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 42,
-                fontWeight: FontWeight.w800,
-              ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: const [
+                // Branding y loader central.
+                NevyLogo(size: 48, color: Colors.white),
+                SizedBox(height: 16),
+                NevyLogoLoader(size: 56),
+              ],
             ),
           ),
         ],

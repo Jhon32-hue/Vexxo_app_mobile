@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import '../../../core/theme/colors.dart';
 import '../../../core/widgets/nevy_wordmark.dart';
+import 'widgets/nevy_logo_loader.dart';
 
 class SplashPage extends StatelessWidget {
   const SplashPage({super.key});
@@ -7,8 +9,19 @@ class SplashPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF0B1220), // dark calm
-      body: const Center(child: NevyLogo(size: 72, color: Colors.white)),
+      backgroundColor: NevyColors.background, // dark calm
+      body: const Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            // Wordmark principal en splash.
+            NevyLogo(size: 72, color: Colors.white),
+            SizedBox(height: 20),
+            // Loader circular tipo SVG.
+            NevyLogoLoader(size: 64),
+          ],
+        ),
+      ),
     );
   }
 }

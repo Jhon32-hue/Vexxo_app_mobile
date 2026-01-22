@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import '../../../core/theme/colors.dart';
+import '../../../core/widgets/nevy_wordmark.dart';
+import 'loading_transition_page.dart';
+import 'widgets/onboarding_button.dart';
+import 'widgets/onboarding_indicator.dart';
 import 'widgets/onboarding_slide.dart';
 
 class OnboardingFlow extends StatefulWidget {
@@ -12,70 +17,78 @@ class _OnboardingFlowState extends State<OnboardingFlow> {
   final PageController _controller = PageController();
   int currentIndex = 0;
 
+  // Contenido principal de las 3 pantallas.
   final slides = const [
-    OnboardingSlide(
-      title: 'Nevy',
-      subtitle: 'Tu dinero, sin ruido.',
-      description:
-          'Entiende tu vida financiera\nsin estrés, sin letras pequeñas.',
+    (
+      title: 'La forma más fácil de manejar tu dinero',
+      description: 'Sin líos ni estrés financiero.',
     ),
-    OnboardingSlide(
+    (
       title: 'Todo en un solo lugar',
-      subtitle: '',
-      description:
-          'Cuentas, gastos, metas y decisiones\nconectadas inteligentemente.',
+      description: 'Cuentas, gastos y decisiones conectadas con sentido.',
     ),
-    OnboardingSlide(
-      title: 'Decisiones claras',
-      subtitle: '',
-      description:
-          'Opciones reales basadas en tu situación,\nno en comisiones.',
+    (
+      title: 'Hecho para tu vida real',
+      description: 'No finanzas de banco. Finanzas humanas.',
     ),
   ];
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Expanded(
-          child: PageView(
-            controller: _controller,
-            onPageChanged: (index) => setState(() => currentIndex = index),
-            children: slides,
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(24),
-          child: ElevatedButton(
-            onPressed: () {
-              if (currentIndex < slides.length - 1) {
-                _controller.nextPage(
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeOut,
-                );
-              } else {
-                //TODO: ir a auth / home
-              }
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xFF4CC9A7),
-              minimumSize: const Size(double.infinity, 52),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16),
+    return Scaffold(
+      backgroundColor: NevyColors.background,
+      body: SafeArea(
+        child: Column(
+          children: [
+            const SizedBox(height: 16),
+            const NevyLogo(size: 36, color: Colors.white),
+            const SizedBox(height: 12),
+            // Slides con animaciones suaves.
+            Expanded(
+              child: PageView.builder(
+                controller: _controller,
+                onPageChanged: (index) => setState(() => currentIndex = index),
+                itemCount: slides.length,
+                itemBuilder: (context, index) {
+                  final slide = slides[index];
+                  return OnboardingSlide(
+                    title: slide.title,
+                    description: slide.description,
+                    isActive: index == currentIndex,
+                  );
+                },
               ),
             ),
-            child: Text(
-              currentIndex == slides.length - 1
-                  ? 'Empezar con calma'
-                  : 'Continuar',
-              style: const TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.w600,
+            OnboardingIndicator(
+              currentIndex: currentIndex,
+              total: slides.length,
+            ),
+            // CTA principal y navegación de flujo.
+            Padding(
+              padding: const EdgeInsets.fromLTRB(24, 24, 24, 32),
+              child: OnboardingButton(
+                label: currentIndex == slides.length - 1
+                    ? 'Empezar ahora'
+                    : 'Continuar',
+                onPressed: () {
+                  if (currentIndex < slides.length - 1) {
+                    _controller.nextPage(
+                      duration: const Duration(milliseconds: 400),
+                      curve: Curves.easeOutCubic,
+                    );
+                  } else {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) => const LoadingTransitionPage(),
+                      ),
+                    );
+                  }
+                },
               ),
             ),
-          ),
+          ],
         ),
-      ],
+      ),
     );
   }
 }
