@@ -5,11 +5,15 @@ import '../../../../core/theme/colors.dart';
 class OnboardingIndicator extends StatelessWidget {
   final int currentIndex;
   final int total;
+  final Color activeColor;
+  final Color inactiveColor;
 
   const OnboardingIndicator({
     super.key,
     required this.currentIndex,
     required this.total,
+    this.activeColor = NevyColors.brandPrimary,
+    this.inactiveColor = NevyColors.textSecondary,
   });
 
   @override
@@ -25,9 +29,8 @@ class OnboardingIndicator extends StatelessWidget {
           height: 4,
           width: isActive ? 32 : 16,
           decoration: BoxDecoration(
-            color: isActive
-                ? NevyColors.brandPrimary
-                : NevyColors.textSecondary.withValues(alpha: 0.4),
+            color:
+                isActive ? activeColor : inactiveColor.withValues(alpha: 0.4),
             borderRadius: BorderRadius.circular(12),
           ),
         );
