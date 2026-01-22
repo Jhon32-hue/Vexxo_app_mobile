@@ -1,34 +1,35 @@
 import 'package:flutter/material.dart';
 
 /// Paleta oficial de Nevy.
-/// - Predominante: Azul océano profundo (confianza, calma, claridad).
-/// - Secundario: Coral suave (acción, llamados a la acción).
-/// - Neutros: para fondo y textos.
+/// - Predominante: Amarillo pastel intenso (calma premium).
+/// - Secundario: Verde menta suave (CTA humano).
+/// - Oscuro premium: fondo profundo.
+/// - Neutros: para textos y superficies.
 class NevyColors {
   // Brand
-  static const Color brandPrimary = Color(0xFF0B1F3B); // Azul profundo (Nevy)
-  static const Color brandSecondary = Color(0xFFFF6B6B); // Coral suave (CTA)
+  static const Color brandPrimary = Color(0xFFF6C453); // Amarillo pastel intenso
+  static const Color brandSecondary = Color(0xFFB7E4C7); // Verde menta suave
 
   // Neutrals
-  static const Color background = Color(0xFFF6F8FC); // Fondo claro neutro
-  static const Color surface = Color(0xFFFFFFFF); // Cards / paneles
-  static const Color textPrimary = Color(0xFF0F172A); // Texto principal
-  static const Color textSecondary = Color(0xFF64748B); // Texto secundario
+  static const Color background = Color(0xFF0B1220); // Fondo oscuro premium
+  static const Color surface = Color(0xFF141B2D); // Cards / paneles oscuros
+  static const Color textPrimary = Color(0xFFFFFFFF); // Texto principal
+  static const Color textSecondary = Color(0xFFC7CCD6); // Texto secundario
 
   // UI helpers
-  static const Color border = Color(0xFFE6EAF2);
-  static const Color success = Color(0xFF22C55E);
-  static const Color warning = Color(0xFFF59E0B);
+  static const Color border = Color(0xFF2A3246);
+  static const Color success = Color(0xFFB7E4C7);
+  static const Color warning = Color(0xFFF6C453);
 
   /// Gradiente suave (premium) para headers y fondos del onboarding.
-  /// Mantiene “tranquilidad” sin ser morado.
+  /// Mantiene calma sin usar azul bancario clásico.
   static const LinearGradient heroGradient = LinearGradient(
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
     colors: [
-      Color(0xFF0B1F3B), // Azul profundo
-      Color(0xFF123B6B), // Azul medio
-      Color(0xFF0B1F3B), // vuelve a profundo (loop visual)
+      Color(0xFF0B1220), // Oscuro premium
+      Color(0xFF151C2E), // Oscuro suave
+      Color(0xFF0B1220), // Loop visual
     ],
   );
 }
